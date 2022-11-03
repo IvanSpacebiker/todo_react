@@ -7,6 +7,7 @@ import './App.css';
             this.handleChange = this.handleChange.bind(this);
             this.handleAddClick = this.handleAddClick.bind(this);
             this.handleDeleteClick = this.handleDeleteClick.bind(this);
+            this.handleKey = this.handleKey.bind(this);
             this.state = {
                 tasks: [],
                 input_value: "",
@@ -16,6 +17,7 @@ import './App.css';
         handleAddClick(){
             const task = <Task
                 key={Date.now()}
+                id={Date.now()}
                 value={this.state.input_value}
                 onClick={this.handleDeleteClick}
             />
@@ -23,7 +25,20 @@ import './App.css';
             this.setState({input_value: ""})
         }
 
+        handleKey(e){
+            if (e.key === "Enter"){
+                // console.log(this.handleAddClick())
+                this.handleAddClick()
+            }
+        }
+
         handleDeleteClick(e){
+            const index = this.state.tasks.findIndex(task => e.target.value == task.props.id)
+            const copy = this.state.tasks
+            copy.splice(index, 1)
+            this.setState({tasks: copy})
+            console.log(index)
+            console.log(this.state.tasks)
 
         }
 
@@ -38,6 +53,7 @@ import './App.css';
                     <Input
                         onClick={this.handleAddClick}
                         onChange={this.handleChange}
+                        onKeyPress={this.handleKey}
                         value={this.state.input_value}
                     />
                     <div className="list-field">
@@ -62,8 +78,10 @@ import './App.css';
                         className="add-input"
                         value={this.props.value}
                         onChange={this.props.onChange}
+                        onKeyPress={this.props.onKeyPress}
                     />
                     <button
+                        type="submit"
                         onClick={() => this.props.onClick()}
                         className="add-button"
                     >+</button>
@@ -91,6 +109,7 @@ import './App.css';
                     <p className={this.state.isDone ? "task-button done" : "task-button"}>{this.state.value}</p>
                     <button
                         onClick={this.props.onClick}
+                        value={this.props.id}
                     >✕</button>
                 </li>
             );
