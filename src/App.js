@@ -15,14 +15,16 @@ import './App.css';
         }
 
         handleAddClick(){
-            const task = <Task
-                key={Date.now()}
-                id={Date.now()}
-                value={this.state.input_value}
-                onClick={this.handleDeleteClick}
-            />
-            this.state.tasks.push(task)
-            this.setState({input_value: ""})
+            if(this.state.input_value !== ""){
+                const task = <Task
+                    key={Date.now()}
+                    id={Date.now()}
+                    value={this.state.input_value}
+                    onClick={this.handleDeleteClick}
+                />
+                this.state.tasks.push(task)
+                this.setState({input_value: ""})
+            }
         }
 
         handleKey(e){
@@ -37,9 +39,6 @@ import './App.css';
             const copy = this.state.tasks
             copy.splice(index, 1)
             this.setState({tasks: copy})
-            console.log(index)
-            console.log(this.state.tasks)
-
         }
 
         handleChange(e){
@@ -101,13 +100,14 @@ import './App.css';
 
         render() {
             return (
-                <li>
+                <li className="list-item">
                     <input type="checkbox"
                            className="task-check"
                            onChange={() => this.setState({isDone: !this.state.isDone})}>
                     </input>
-                    <p className={this.state.isDone ? "task-button done" : "task-button"}>{this.state.value}</p>
+                    <p className={this.state.isDone ? "task-name done" : "task-name"}>{this.state.value}</p>
                     <button
+                        className="task-delete"
                         onClick={this.props.onClick}
                         value={this.props.id}
                     >✕</button>
