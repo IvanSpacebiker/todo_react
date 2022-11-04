@@ -83,14 +83,6 @@ p {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.task-name:hover {
-  display: inline-block;
-  width: 75%;
-  margin: 0;
-  font-size: 1.2rem;
-  color: black;
-  overflow: visible;
-}
 .done {
   color: darkgrey;
   text-decoration: line-through;

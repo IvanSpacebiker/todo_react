@@ -105,7 +105,13 @@ import './App.css';
                            className="task-check"
                            onChange={() => this.setState({isDone: !this.state.isDone})}>
                     </input>
-                    <p className={this.state.isDone ? "task-name done" : "task-name"}>{this.state.value}</p>
+                    <p
+                        className={this.state.isDone ? "task-name done" : "task-name"}
+                        title={this.state.value}
+                    >
+                        {this.state.value}
+
+                    </p>
                     <button
                         className="task-delete"
                         onClick={this.props.onClick}
@@ -115,6 +121,11 @@ import './App.css';
             );
         }
     }
+
+    // context menu instead of checker and "x" button
+    // class ContextMenu extends React.Component{
+    //
+    // }
 
 
 export default ToDo;
