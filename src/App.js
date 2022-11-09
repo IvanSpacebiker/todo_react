@@ -4,15 +4,20 @@ import './App.css';
     class ToDo extends React.Component {
         constructor(props) {
             super(props);
+
             this.handleChange = this.handleChange.bind(this);
             this.handleAddClick = this.handleAddClick.bind(this);
             this.handleDeleteClick = this.handleDeleteClick.bind(this);
             this.handleKey = this.handleKey.bind(this);
+
+
             this.state = {
                 tasks: [],
                 input_value: "",
             }
         }
+
+
 
         handleAddClick(){
             if(this.state.input_value !== ""){
@@ -29,7 +34,6 @@ import './App.css';
 
         handleKey(e){
             if (e.key === "Enter"){
-                // console.log(this.handleAddClick())
                 this.handleAddClick()
             }
         }
@@ -60,6 +64,7 @@ import './App.css';
                             {this.state.tasks}
                         </ul>
                     </div>
+
                 </div>
             );
         }
@@ -92,15 +97,36 @@ import './App.css';
     class Task extends React.Component{
         constructor(props) {
             super(props);
+            this.handleContext = this.handleContext.bind(this);
+            this.mouseMove = this.mouseMove.bind(this);
             this.state = {
                 isDone: false,
                 value: this.props.value,
+                contextMenu: false
             }
+        }
+
+        handleContext(e){
+            e.preventDefault()
+            let x = e.clientX + "px";
+            let y = e.clientY + "px";
+            console.log(x,y)
+
+            document.documentElement.style.setProperty('--mouse-x', x);
+            document.documentElement.style.setProperty('--mouse-y', y);
+            this.setState({contextMenu: !this.state.contextMenu})
+        }
+        mouseMove(e){
+
         }
 
         render() {
             return (
-                <li className="list-item">
+                <li
+                    className="list-item"
+                    onContextMenu={this.handleContext}
+                    onMouseMove={this.mouseMove}
+                >
                     <input type="checkbox"
                            className="task-check"
                            onChange={() => this.setState({isDone: !this.state.isDone})}>
@@ -110,22 +136,44 @@ import './App.css';
                         title={this.state.value}
                     >
                         {this.state.value}
-
                     </p>
                     <button
                         className="task-delete"
                         onClick={this.props.onClick}
                         value={this.props.id}
-                    >✕</button>
+                    >
+                        ✕
+                    </button>
+                    <ContextMenu
+                        isVisible = {this.state.contextMenu}
+                    />
                 </li>
             );
         }
     }
 
     // context menu instead of checker and "x" button
-    // class ContextMenu extends React.Component{
-    //
-    // }
+    class ContextMenu extends React.Component{
+        constructor(props) {
+            super(props);
+
+        }
+
+
+        render() {
+            return (
+                <div
+                    className="context-menu"
+                    hidden={!this.props.isVisible}
+                >
+                    <ul>
+                        <li>Done</li>
+                        <li>Delete</li>
+                    </ul>
+                </div>
+            )
+        }
+    }
 
 
 export default ToDo;

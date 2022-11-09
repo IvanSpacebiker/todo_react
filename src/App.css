@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Chango&display=swap');
 
+html {
+  --mouse-x: 0;
+  --mouse-y: 0;
+}
+body {
+  overflow: hidden;
+}
 ul {
   list-style-type: none;
   padding: 0;
@@ -16,7 +23,7 @@ p {
 }
 
 .todo {
-  position: relative;
+
   margin: 8% auto;
   padding-bottom: 0.5em;
   width: 50%;
@@ -106,4 +113,15 @@ p {
 }
 .task-check:checked {
   background-color: gray;
+}
+
+.context-menu {
+  position: absolute;
+  background: cornflowerblue;
+  border-radius: 10px;
+  font-family: "Chango", cursive;
+  padding: 3%;
+  left: var(--mouse-x);
+  top: var(--mouse-y);
+
 }
