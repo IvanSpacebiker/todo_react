@@ -21,7 +21,6 @@ class Input extends React.Component
                     onKeyDown={this.props.onKeyDown}
                 />
                 <button
-                    type="submit"
                     onClick={() => this.props.onClick()}
                     className="add-button"
                 >

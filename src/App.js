@@ -4,7 +4,7 @@ import getUniqueId from "uniqid";
 import Input from "./components/Input";
 import Task from "./components/Task";
 // Styles
-import "./App.css";
+import "./styles/App.css";
 
 export default class App extends React.Component
 {
@@ -65,7 +65,7 @@ export default class App extends React.Component
     {
         return (
             <div className="todo">
-                <p className="title">TO-OD</p>
+                <h2 className="title">TO-OD</h2>
                 <Input
                     onClick={this.handleAddClick}
                     onChange={this.handleChange}
