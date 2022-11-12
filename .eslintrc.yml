@@ -1,0 +1,244 @@
+env:
+  browser: true
+  es2021: true
+extends:
+  - eslint:recommended
+  - plugin:react/recommended
+parserOptions:
+  ecmaVersion: latest
+  sourceType: module
+  ecmaFeatures:
+    jsx: true
+rules:
+#  Main
+  array-callback-return: error
+  no-await-in-loop: error
+  no-constant-binary-expression: error
+  no-constructor-return: error
+  no-duplicate-imports: error
+  no-promise-executor-return: error
+  no-self-compare: warn
+  no-unmodified-loop-condition: error
+  no-unreachable-loop: error
+  no-use-before-define: error
+#  Suggestions
+  accessor-pairs: off
+  arrow-body-style: off
+  block-scoped-var: off
+  camelcase:
+    - error
+    -
+      ignoreImports: true
+  capitalized-comments: warn
+  class-methods-use-this: warn
+  default-case: error
+  default-param-last: error
+  dot-notation: warn
+  eqeqeq: error
+  func-name-matching: warn
+  func-names:
+    - error
+    - as-needed
+  max-classes-per-file:
+    - error
+    - 1
+  max-depth:
+    - error
+    - max: 5
+  max-params:
+    - error
+    - max: 3
+  multiline-comment-style:
+    - warn
+    - bare-block
+  no-confusing-arrow: error
+  no-console: error
+  no-var: error
+  no-undefined: warn
+  spaced-comment: error
+  #  Code style
+  indent:
+    - error
+    - 4
+# :CHANGE IT IF YOU NEED
+  linebreak-style:
+    - error
+    - windows
+  quotes:
+    - error
+    - double
+  semi:
+    - error
+    - always
+  array-bracket-spacing:
+    - warn
+    - always
+    -
+      singleValue: true
+      objectsInArrays: false
+      arraysInArrays: false
+  arrow-parens: error
+  arrow-spacing:
+    - error
+    -
+      before: true
+      after: true
+  block-spacing: warn
+  brace-style:
+    - warn
+    - allman
+    -
+      allowSingleLine: true
+  comma-dangle:
+    - warn
+    -
+      arrays: always-multiline
+      objects: always-multiline
+      imports: always-multiline
+  comma-spacing:
+    - warn
+    -
+      before: false
+      after: true
+  comma-style:
+    - warn
+    - last
+  computed-property-spacing:
+    - warn
+    - always
+  dot-location:
+    - warn
+    - property
+  eol-last:
+    - error
+    - always
+  func-call-spacing:
+    - warn
+    - never
+  function-call-argument-newline:
+    - warn
+    - consistent
+  function-paren-newline:
+    - warn
+    - consistent
+  generator-star-spacing:
+    - warn
+    -
+      before: true
+      after: false
+  jsx-quotes:
+    - error
+    - prefer-double
+  key-spacing:
+    - warn
+    - multiLine:
+        beforeColon: true
+        afterColon: true
+        align: colon
+      singleLine:
+        beforeColon: false
+        afterColon: true
+  keyword-spacing:
+    - warn
+    -
+      before: true
+      after: true
+  lines-around-comment:
+    - error
+    -
+      beforeBlockComment: true
+      afterBlockComment: true
+      applyDefaultIgnorePatterns: true
+      ignorePattern: (===|\+|_)
+      allowBlockStart: true
+      allowObjectStart: true
+      allowObjectEnd: true
+      allowArrayStart: true
+      allowArrayEnd: true
+  lines-between-class-members:
+    - warn
+    - always
+  max-len:
+    - error
+    -
+      code: 150
+      ignoreUrls: true
+      ignoreStrings: true
+      ignoreTemplateLiterals: true
+      ignoreRegExpLiterals: false
+  multiline-ternary:
+    - error
+    - always-multiline
+  new-parens:
+    - error
+    - always
+  newline-per-chained-call:
+    - error
+  no-mixed-spaces-and-tabs:
+    - error
+  no-multi-spaces:
+    - warn
+    -
+      ignoreEOLComments: true
+  no-multiple-empty-lines:
+    - error
+  no-tabs:
+    - error
+  no-trailing-spaces:
+    - error
+  no-whitespace-before-property:
+    - error
+  nonblock-statement-body-position:
+    - warn
+  object-curly-newline:
+    - warn
+    -
+      multiline: true
+  object-curly-spacing:
+    - warn
+    - always
+    -
+      arraysInObjects: false
+      objectsInObjects: false
+  object-property-newline:
+    - warn
+  operator-linebreak:
+    - warn
+    - after
+  padded-blocks:
+    - warn
+    - never
+  padding-line-between-statements:
+    - warn
+    -
+      blankLine: always
+      prev: "*"
+      next: return
+  rest-spread-spacing:
+    - warn
+    - never
+  semi-style:
+    - error
+    - last
+  space-before-blocks:
+    - warn
+  space-before-function-paren:
+    - warn
+    -
+      anonymous: never
+      named: never
+      asyncArrow: always
+  space-in-parens:
+    - warn
+    - never
+  template-curly-spacing:
+    - warn
+    - always
+  template-tag-spacing:
+    - warn
+    - always
+  wrap-regex:
+    - warn
+  yield-star-spacing:
+    - warn
+    - before
