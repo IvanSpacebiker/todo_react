@@ -30,8 +30,8 @@ export default class App extends React.Component
         {
             const key = getUniqueId();
             const task = <Task
-                id={key}
                 key={key}
+                id={key}
                 value={this.state.inputValue}
                 onClick={this.handleDeleteClick}
             />;
