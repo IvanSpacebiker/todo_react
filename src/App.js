@@ -1,12 +1,11 @@
 import React from "react";
-import getUniqueId from "uniqid";
+// Styles
+import "./styles/App.css";
 // Components
 import Input from "./components/Input";
 import Task from "./components/Task";
-// Styles
-import "./styles/App.css";
 
-export default class App extends React.Component
+class ToDo extends React.Component
 {
     constructor(props)
     {
@@ -14,8 +13,9 @@ export default class App extends React.Component
 
         this.handleChange = this.handleChange.bind(this);
         this.handleAddClick = this.handleAddClick.bind(this);
-        this.handleDeleteClick = this.handleDeleteClick.bind(this);
+        this.getHandlerDeleteClick = this.getHandlerDeleteClick.bind(this);
         this.handleKey = this.handleKey.bind(this);
+
 
         this.state = {
             tasks      : [],
@@ -23,17 +23,16 @@ export default class App extends React.Component
         };
     }
 
-
     handleAddClick()
     {
+        const taskId = Date.now();
         if (this.state.inputValue !== "")
         {
-            const key = getUniqueId();
             const task = <Task
-                key={key}
-                id={key}
+                key={taskId}
+                id={taskId}
                 value={this.state.inputValue}
-                onClick={this.handleDeleteClick}
+                onClick={this.getHandlerDeleteClick(taskId)}
             />;
             this.state.tasks.push(task);
             this.setState({ inputValue: "" });
@@ -48,12 +47,13 @@ export default class App extends React.Component
         }
     }
 
-    handleDeleteClick(e)
+    getHandlerDeleteClick(taskId)
     {
-        const index = this.state.tasks.findIndex((task) => e.target.value === task.props.id);
-        const copy = this.state.tasks;
-        copy.splice(index, 1);
-        this.setState({ tasks: copy });
+        return () =>
+        {
+            const newState = this.state.tasks.filter((task) => taskId !== task.props.id);
+            this.setState({ tasks: newState });
+        };
     }
 
     handleChange(e)
@@ -65,11 +65,11 @@ export default class App extends React.Component
     {
         return (
             <div className="todo">
-                <h2 className="title">TO-OD</h2>
+                <p className="title">TO-OD</p>
                 <Input
                     onClick={this.handleAddClick}
                     onChange={this.handleChange}
-                    onKeyDown={this.handleKey}
+                    onKeyPress={this.handleKey}
                     value={this.state.inputValue}
                 />
                 <div className="list-field">
@@ -82,3 +82,5 @@ export default class App extends React.Component
         );
     }
 }
+
+export default ToDo;
