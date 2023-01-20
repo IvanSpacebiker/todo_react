@@ -30,39 +30,34 @@ class Task extends React.Component
 
     render()
     {
-        const AddItemButtonLabel = "✕";
-
         return (
             <li
                 className="list-item"
                 onContextMenu={this.handleContext}
             >
-                <input type="checkbox"
-                    className="task-check"
-                    onChange={() => this.setState({ isDone: !this.state.isDone })}>
-                </input>
                 <p
                     className={this.state.isDone ? "task-name done" : "task-name"}
                     title={this.state.value}
                 >
                     {this.state.value}
                 </p>
-                <button
-                    className="task-delete"
-                    onClick={this.props.onClick}
-                    value={this.props.id}
-                >
-                    {AddItemButtonLabel}
-                </button>
 
-                <ContextMenu isVisible={this.state.contextMenu}/>
+                <ContextMenu
+                    isVisible = {this.state.contextMenu}
+                    isDone = {this.state.isDone ? "Undone" : "Done"}
+                    doneClick = {() => this.setState({
+                        isDone      : !this.state.isDone,
+                        contextMenu : false,
+                    })}
+                    deleteClick = {this.props.onClick}
+                />
             </li>
         );
     }
 }
 
 Task.propTypes = {
-    id    : PropTypes.string.isRequired,
+    id    : PropTypes.number.isRequired,
     value : PropTypes.string.isRequired,
 
     // Handlers

@@ -18,24 +18,23 @@ class Input extends React.Component
                     className="add-input"
                     value={this.props.value}
                     onChange={this.props.onChange}
-                    onKeyDown={this.props.onKeyDown}
+                    onKeyPress={this.props.onKeyPress}
                 />
                 <button
+                    type="submit"
                     onClick={() => this.props.onClick()}
                     className="add-button"
-                >
-                    {AddButtonLabel}
-                </button>
+                >{AddButtonLabel}</button>
             </div>
         );
     }
 }
 
 Input.propTypes = {
-    value     : PropTypes.string.isRequired,
-    onChange  : PropTypes.func.isRequired,
-    onKeyDown : PropTypes.func.isRequired,
-    onClick   : PropTypes.func.isRequired,
+    value      : PropTypes.string.isRequired,
+    onChange   : PropTypes.func.isRequired,
+    onKeyPress : PropTypes.func.isRequired,
+    onClick    : PropTypes.func.isRequired,
 };
 
 export default Input;

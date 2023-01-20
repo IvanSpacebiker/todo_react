@@ -8,7 +8,6 @@ class ContextMenu extends React.Component
         super(props);
     }
 
-
     render()
     {
         return (
@@ -17,14 +16,23 @@ class ContextMenu extends React.Component
                 hidden={!this.props.isVisible}
             >
                 <ul>
-                    <li>Done</li>
-                    <li>Delete</li>
+                    <li
+                        onClick={this.props.doneClick}
+                    >{this.props.isDone}</li>
+                    <li
+                        onClick={this.props.deleteClick}
+                    >Delete</li>
                 </ul>
             </div>
         );
     }
 }
 
-ContextMenu.propTypes = { isVisible: PropTypes.bool.isRequired };
+ContextMenu.propTypes = {
+    isVisible   : PropTypes.bool.isRequired,
+    isDone      : PropTypes.string.isRequired,
+    doneClick   : PropTypes.func.isRequired,
+    deleteClick : PropTypes.func.isRequired,
+};
 
 export default ContextMenu;
